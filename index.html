@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#F5F0E8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>A Little Something</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Progress -->
+  <div id="progress-bar" style="display:none"></div>
+  <div id="progress-label" style="display:none"></div>
+
+  <!-- Music -->
+  <button id="music-btn" aria-label="Music">
+    <div style="display:flex;align-items:end;gap:2px;height:14px">
+      <div class="music-bar" style="height:4px"></div>
+      <div class="music-bar" style="height:4px"></div>
+      <div class="music-bar" style="height:4px"></div>
+      <div class="music-bar" style="height:4px"></div>
+    </div>
+  </button>
+
+  <!-- Nav -->
+  <div id="nav-hint"><div class="bounce"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div></div>
+  <div class="touch-l" id="touch-l"></div>
+  <div class="touch-r" id="touch-r"></div>
+
+  <!-- ═══ 01. OPENING ═══ -->
+  <div class="scene active paper" id="s0">
+    <div class="deco-flowers top-left"></div>
+    <div class="deco-flowers bottom-left"></div>
+    <div style="text-align:center;padding:32px;position:relative;z-index:3">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.35em;color:var(--burgundy);text-transform:uppercase;margin-bottom:8px">♥</p>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.35em;color:var(--soft-brown);text-transform:uppercase;margin-bottom:40px">SEALED</p>
+      <p class="font-label reveal" style="font-size:11px;letter-spacing:.12em;color:var(--soft-brown);margin-bottom:8px">For</p>
+      <h1 class="font-script reveal-scale" style="font-size:clamp(42px,11vw,64px);color:var(--burgundy);line-height:1.1;margin-bottom:24px" data-name></h1>
+      <p class="font-serif reveal" style="font-size:17px;color:var(--soft-brown);font-style:italic;line-height:1.6;margin-bottom:40px">A little something<br>I made for you.</p>
+      <button class="font-label reveal" id="btn-open" style="font-size:11px;letter-spacing:.25em;color:var(--warm-white);text-transform:uppercase;background:var(--burgundy);border:none;padding:14px 44px;border-radius:2px;cursor:pointer;transition:opacity .3s">OPEN</button>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4">01 / 24</p>
+  </div>
+
+  <!-- ═══ 02. SECRET UNLOCK ═══ -->
+  <div class="scene paper" id="s1">
+    <div style="text-align:center;padding:32px;position:relative;z-index:3">
+      <div id="unlock-intro">
+        <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--burgundy);margin-bottom:20px">♥</p>
+        <p class="font-display reveal" style="font-size:22px;color:var(--dark-brown);font-style:italic;margin-bottom:12px">Before we begin...</p>
+        <p class="font-serif reveal" style="font-size:18px;color:var(--soft-brown);margin-bottom:36px">Prove you know<br>the date.</p>
+        <button class="font-label reveal" id="btn-enter" style="font-size:11px;letter-spacing:.2em;color:var(--burgundy);text-transform:uppercase;border:1.5px solid var(--burgundy);padding:12px 36px;background:none;border-radius:2px;cursor:pointer">ENTER</button>
+      </div>
+      <div id="unlock-pad" style="display:none">
+        <div id="pad-dots" style="display:flex;justify-content:center;gap:12px;margin-bottom:36px">
+          <div class="keypad-dot"></div>
+          <div class="keypad-dot"></div>
+          <div class="keypad-dot"></div>
+          <div class="keypad-dot"></div>
+        </div>
+        <div id="pad-grid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:220px;margin:0 auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 03. HER NAME ═══ -->
+  <div class="scene" id="s2" style="background:var(--cream)">
+    <div style="position:absolute;inset:0"><img src="photos/photo01.jpg" alt="" style="width:100%;height:100%;object-fit:cover" class="ken-burns"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(0,0,0,.3))"></div></div>
+    <div style="position:relative;z-index:3;text-align:center;padding:32px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:16px">FOR</p>
+      <h1 class="font-script reveal-scale" style="font-size:clamp(44px,12vw,72px);color:#fff;line-height:1.1;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.3)" data-name></h1>
+      <p class="font-serif reveal" style="font-size:17px;color:rgba(255,255,255,.85);font-style:italic;line-height:1.6;margin-bottom:8px">Today isn't just<br>another day.</p>
+      <p class="font-serif reveal" style="font-size:17px;color:rgba(255,255,255,.85);font-style:italic;margin-bottom:40px">It's yours.</p>
+      <p class="font-label reveal" style="font-size:12px;letter-spacing:.25em;color:rgba(255,255,255,.8);text-transform:uppercase">HAPPY BIRTHDAY</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);z-index:3">03 / 24</p>
+  </div>
+
+  <!-- ═══ 04. BEFORE TODAY ═══ -->
+  <div class="scene paper" id="s3">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.4;margin-bottom:16px">04 / 24</p>
+      <h2 class="font-display reveal" style="font-size:clamp(24px,6vw,32px);color:var(--dark-brown);font-style:italic;margin-bottom:24px;line-height:1.3">Before we get<br>to today...</h2>
+      <div class="polaroid reveal-scale" style="max-width:220px;margin:0 auto 24px;transform:rotate(2deg)">
+        <img src="photos/photo02.jpg" alt="" loading="lazy">
+      </div>
+      <p class="font-serif reveal" style="font-size:15px;color:var(--soft-brown);font-style:italic;line-height:1.6">Let me take you back to the beginning —<br>when everything changed.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 05. HOW WE MET ═══ -->
+  <div class="scene paper" id="s4">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <div class="polaroid reveal-scale" style="max-width:240px;margin:0 auto 20px;transform:rotate(-3deg)">
+        <img src="photos/photo03.jpg" alt="" loading="lazy">
+        <div class="cap"><p class="font-script" style="font-size:16px;color:var(--burgundy)">The day we met</p></div>
+      </div>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:var(--soft-brown);margin-bottom:4px">[Month Day, Year]</p>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.6">Somewhere special</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">05 / 24</p>
+  </div>
+
+  <!-- ═══ 06. FIRST CONVERSATION ═══ -->
+  <div class="scene paper" id="s5">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <h2 class="font-display reveal" style="font-size:22px;color:var(--dark-brown);font-style:italic;margin-bottom:8px">Our first<br>conversation</h2>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:var(--soft-brown);margin-bottom:20px">[Month Day, Year]</p>
+      <div class="reveal-scale" style="max-width:200px;margin:0 auto 20px;background:var(--dark-brown);border-radius:16px;padding:16px;position:relative">
+        <div style="background:rgba(255,255,255,.9);border-radius:12px;padding:12px;text-align:left">
+          <p class="font-serif" style="font-size:13px;color:var(--dark-brown);line-height:1.5">Hey, how are you?</p>
+        </div>
+        <div style="background:var(--burgundy);border-radius:12px;padding:12px;text-align:right;margin-top:8px">
+          <p class="font-serif" style="font-size:13px;color:#fff;line-height:1.5">I'm good, thanks for asking 😊</p>
+        </div>
+      </div>
+      <p class="font-serif reveal" style="font-size:15px;color:var(--soft-brown);font-style:italic;line-height:1.6">A simple message...<br>that started everything.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">06 / 24</p>
+  </div>
+
+  <!-- ═══ 07. FIRST DATE ═══ -->
+  <div class="scene" id="s6">
+    <div style="position:absolute;inset:0"><img src="photos/photo04.jpg" alt="" style="width:100%;height:100%;object-fit:cover" class="ken-burns"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 50%)"></div></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:3">
+      <h2 class="font-display reveal" style="font-size:22px;color:#fff;font-style:italic;margin-bottom:8px">Our first date</h2>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.6);margin-bottom:12px">[Month Day, Year]</p>
+      <p class="font-serif reveal" style="font-size:15px;color:rgba(255,255,255,.85);font-style:italic;line-height:1.6">Good food, great company,<br>and the beginning<br>of something beautiful.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);z-index:3">07 / 24</p>
+  </div>
+
+  <!-- ═══ 08. MEMORY GALLERY ═══ -->
+  <div class="scene paper" id="s7">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <div style="position:relative;height:260px;margin-bottom:20px">
+        <div class="polaroid reveal-scale" style="position:absolute;left:10px;top:0;width:55%;transform:rotate(-4deg);z-index:1">
+          <img src="photos/photo01.jpg" alt="" loading="lazy">
+        </div>
+        <div class="polaroid reveal-scale" style="position:absolute;right:10px;top:20px;width:55%;transform:rotate(3deg);z-index:2">
+          <img src="photos/photo02.jpg" alt="" loading="lazy">
+        </div>
+      </div>
+      <h2 class="font-script reveal" style="font-size:28px;color:var(--burgundy);margin-bottom:8px">Special Memories</h2>
+      <p class="font-serif reveal" style="font-size:14px;color:var(--soft-brown);font-style:italic">Moments that<br>mean the world.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">08 / 24</p>
+  </div>
+
+  <!-- ═══ 09. TIMELINE ═══ -->
+  <div class="scene scene-scroll paper scroll-y" id="s8" style="justify-content:flex-start;padding:60px 24px 40px">
+    <div style="text-align:center;margin-bottom:32px">
+      <h2 class="font-script reveal" style="font-size:28px;color:var(--burgundy)">Our Timeline</h2>
+    </div>
+    <div id="timeline" style="max-width:320px;width:100%;position:relative;padding-left:36px"></div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">09 / 24</p>
+  </div>
+
+  <!-- ═══ 10. PHOTO COLLAGE ═══ -->
+  <div class="scene paper" id="s9">
+    <div style="position:relative;z-index:3;padding:32px;max-width:360px;width:100%">
+      <div id="collage" style="position:relative;height:280px;margin-bottom:20px"></div>
+      <p class="font-script reveal" style="font-size:20px;color:var(--burgundy);text-align:center">Some of my<br>favorite moments<br>with you ♡</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">10 / 24</p>
+  </div>
+
+  <!-- ═══ 11. FUNNY MEMORY ═══ -->
+  <div class="scene" id="s10">
+    <div style="position:absolute;inset:0"><img src="photos/photo05.jpg" alt="" style="width:100%;height:100%;object-fit:cover" class="ken-burns"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(254,252,249,.9))"></div></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:3;text-align:center">
+      <h2 class="font-script reveal" style="font-size:24px;color:var(--burgundy);margin-bottom:12px">The funny<br>moments...</h2>
+      <p class="font-serif reveal" style="font-size:15px;color:var(--soft-brown);font-style:italic;line-height:1.6">Because life is better<br>when we laugh together.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">11 / 24</p>
+  </div>
+
+  <!-- ═══ 12. HEARTFELT MESSAGE ═══ -->
+  <div class="scene paper" id="s11">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.5;margin-bottom:20px">12 / 24</p>
+      <p class="font-script reveal" style="font-size:20px;color:var(--burgundy);margin-bottom:20px">Dear <span data-name></span>,</p>
+      <p class="font-serif reveal" style="font-size:15px;color:var(--soft-brown);font-style:italic;line-height:1.7">I just wanted to take a moment to tell you how much you mean to me...</p>
+      <div style="margin:20px 0" class="reveal"><div class="line" style="margin:0 auto"></div></div>
+      <p class="font-serif reveal" style="font-size:15px;color:var(--soft-brown);font-style:italic;line-height:1.7">You make my world brighter, calmer, and so much more beautiful. I'm so grateful for you, today and always.</p>
+      <p class="reveal" style="font-size:18px;color:var(--burgundy);margin-top:24px">♡</p>
+    </div>
+  </div>
+
+  <!-- ═══ 13. POLAROID MEMORY ═══ -->
+  <div class="scene paper" id="s12">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px">
+      <div class="polaroid reveal-scale" style="max-width:240px;margin:0 auto;transform:rotate(-2deg)">
+        <img src="photos/photo06.jpg" alt="" loading="lazy">
+        <div class="cap">
+          <p class="font-script" style="font-size:16px;color:var(--burgundy)">Just us</p>
+          <p class="font-label" style="font-size:9px;letter-spacing:.15em;color:var(--soft-brown);margin-top:4px">[Month Day, Year]</p>
+        </div>
+      </div>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.5;margin-top:16px">Somewhere beautiful</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">13 / 24</p>
+  </div>
+
+  <!-- ═══ 14. THINGS I LOVE ═══ -->
+  <div class="scene paper" id="s13">
+    <div style="position:relative;z-index:3;width:100%;max-width:320px;padding:32px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.5;margin-bottom:4px">01 / 06</p>
+      <h2 class="font-display reveal" style="font-size:22px;color:var(--burgundy);font-style:italic;margin-bottom:24px">Things I Love<br>About You</h2>
+      <div class="flip-card reveal-scale" id="love-card" style="height:180px;background:var(--warm-white);border:1px solid var(--beige);border-radius:2px">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <p style="font-size:24px;color:var(--burgundy);margin-bottom:4px">♥</p>
+            <h3 class="font-display" style="font-size:20px;color:var(--dark-brown);font-style:italic" id="lc-title"></h3>
+          </div>
+          <div class="flip-back" style="background:var(--cream)">
+            <p class="font-serif" style="font-size:14px;color:var(--soft-brown);line-height:1.6;max-width:240px" id="lc-detail"></p>
+          </div>
+        </div>
+      </div>
+      <button class="font-label reveal" id="lc-next" style="font-size:10px;letter-spacing:.2em;color:var(--warm-white);text-transform:uppercase;background:var(--burgundy);border:none;padding:10px 32px;border-radius:2px;cursor:pointer;margin-top:20px">Next</button>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">14 / 24</p>
+  </div>
+
+  <!-- ═══ 15. INTERACTIVE CARDS ═══ -->
+  <div class="scene paper" id="s14">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:320px">
+      <div style="position:relative;height:200px;margin-bottom:20px">
+        <div class="polaroid reveal-scale" style="position:absolute;left:50%;top:0;width:70%;transform:translateX(-50%) rotate(2deg);z-index:1;background:var(--warm-white);border:1px solid var(--beige);box-shadow:0 4px 16px rgba(61,43,31,.1)">
+          <div style="padding:24px;text-align:center">
+            <p style="font-size:20px;color:var(--burgundy);margin-bottom:8px">♥</p>
+            <p class="font-serif" style="font-size:16px;color:var(--dark-brown);font-style:italic;line-height:1.5">You're stronger<br>than you think.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">15 / 24</p>
+  </div>
+
+  <!-- ═══ 16. MEMORY GALLERY (photo grid) ═══ -->
+  <div class="scene paper" id="s15">
+    <div style="position:relative;z-index:3;padding:32px;max-width:360px;width:100%">
+      <div class="photo-grid cols-2" id="gallery" style="margin-bottom:16px"></div>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:var(--soft-brown);text-align:center;opacity:.6">Tap to view</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">16 / 24</p>
+  </div>
+
+  <!-- ═══ 17. PERSONAL LETTER ═══ -->
+  <div class="scene scene-scroll paper scroll-y" id="s16" style="justify-content:flex-start;padding:60px 24px 40px">
+    <div style="width:100%;max-width:340px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.5;margin-bottom:16px;text-align:center">17 / 24</p>
+      <div class="letter-paper">
+        <p class="font-script reveal" style="font-size:20px;color:var(--burgundy);margin-bottom:20px">My Dear <span data-name></span>,</p>
+        <div id="letter2-body"></div>
+        <div class="reveal" style="text-align:right;margin-top:24px">
+          <p class="font-serif" style="font-size:14px;color:var(--soft-brown);font-style:italic">Always,</p>
+          <p class="font-script" style="font-size:18px;color:var(--burgundy)" data-sender></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 18. SPECIAL QUOTE ═══ -->
+  <div class="scene" id="s17">
+    <div style="position:absolute;inset:0"><img src="photos/photo07.jpg" alt="" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:rgba(61,43,31,.55)"></div></div>
+    <div style="position:relative;z-index:3;text-align:center;padding:32px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.5);margin-bottom:20px">18 / 24</p>
+      <blockquote class="font-serif reveal" style="font-size:clamp(18px,5vw,24px);color:#fff;font-style:italic;line-height:1.6;max-width:320px;margin:0 auto">"You are my today, all of my tomorrows, and everything in between."</blockquote>
+      <p class="reveal" style="font-size:20px;color:rgba(255,255,255,.6);margin-top:24px">♡</p>
+    </div>
+  </div>
+
+  <!-- ═══ 19. WHAT MAKES YOU DIFFERENT ═══ -->
+  <div class="scene paper" id="s18">
+    <div style="position:relative;z-index:3;width:100%;max-width:320px;padding:32px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.5;margin-bottom:4px">01 / 05</p>
+      <h2 class="font-display reveal" style="font-size:22px;color:var(--burgundy);font-style:italic;margin-bottom:28px">What Makes You<br>Different</h2>
+      <div id="diff-list"></div>
+      <div class="reveal" style="text-align:right;margin-top:20px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--burgundy)"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">19 / 24</p>
+  </div>
+
+  <!-- ═══ 20. FUTURE MEMORIES ═══ -->
+  <div class="scene paper" id="s19">
+    <div style="position:relative;z-index:3;width:100%;max-width:320px;padding:32px">
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.3em;color:var(--soft-brown);opacity:.5;margin-bottom:4px">01 / 04</p>
+      <h2 class="font-display reveal" style="font-size:22px;color:var(--burgundy);font-style:italic;margin-bottom:28px">Future Memories</h2>
+      <div id="future-list"></div>
+      <div class="reveal" style="text-align:right;margin-top:20px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--burgundy)"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">20 / 24</p>
+  </div>
+
+  <!-- ═══ 21. BIRTHDAY REVEAL ═══ -->
+  <div class="scene" id="s20">
+    <div style="position:absolute;inset:0"><img src="photos/photo08.jpg" alt="" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:rgba(61,43,31,.45)"></div></div>
+    <div style="position:relative;z-index:3;text-align:center;padding:32px">
+      <p class="font-serif reveal" style="font-size:16px;color:rgba(255,255,255,.7);font-style:italic;margin-bottom:40px">There's one thing<br>I haven't said yet...</p>
+      <span class="font-display reveal-scale" style="font-size:clamp(40px,10vw,60px);letter-spacing:.1em;display:block;color:#fff;line-height:1.1">HAPPY</span>
+      <span class="font-display reveal-scale" style="font-size:clamp(40px,10vw,60px);letter-spacing:.1em;display:block;color:#fff;line-height:1.1">BIRTHDAY</span>
+      <div style="margin:24px auto" class="reveal"><div class="line" style="margin:0 auto;background:rgba(255,255,255,.4)"></div></div>
+      <h1 class="font-script reveal-scale" style="font-size:clamp(36px,10vw,52px);color:#fff" data-name></h1>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.4);z-index:3">21 / 24</p>
+  </div>
+
+  <!-- ═══ 22. FINAL PHOTOGRAPH ═══ -->
+  <div class="scene" id="s21">
+    <div style="position:absolute;inset:0"><img src="photos/photo06.jpg" alt="" style="width:100%;height:100%;object-fit:cover" class="ken-burns"><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.4),transparent 40%)"></div></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:3;text-align:center">
+      <p class="font-serif reveal" style="font-size:18px;color:#fff;font-style:italic">Thank you for being you.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);z-index:3">22 / 24</p>
+  </div>
+
+  <!-- ═══ 23. FINAL LETTER ═══ -->
+  <div class="scene paper" id="s22">
+    <div style="position:relative;z-index:3;text-align:center;padding:32px;max-width:360px">
+      <p class="font-script reveal" style="font-size:22px;color:var(--burgundy);margin-bottom:16px">Happy Birthday, <span data-name></span>.</p>
+      <div class="reveal" style="margin:16px auto"><div class="line" style="margin:0 auto"></div></div>
+      <p class="font-serif reveal" style="font-size:16px;color:var(--soft-brown);font-style:italic;line-height:1.6">And this is only<br>the beginning.</p>
+      <p class="reveal" style="font-size:20px;color:var(--burgundy);margin-top:24px">♡</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:var(--soft-brown);opacity:.4;z-index:3">23 / 24</p>
+  </div>
+
+  <!-- ═══ 24. FINAL REVEAL ═══ -->
+  <div class="scene" id="s23">
+    <div style="position:absolute;inset:0"><img src="photos/photo07.jpg" alt="" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:rgba(61,43,31,.5)"></div></div>
+    <div style="position:relative;z-index:3;text-align:center;padding:32px">
+      <h1 class="font-script reveal-scale" style="font-size:clamp(40px,11vw,60px);color:#fff;margin-bottom:8px" data-name></h1>
+      <p class="reveal" style="font-size:22px;color:rgba(255,255,255,.6);margin-bottom:24px">♡</p>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5)">Birthday: <span data-bday></span></p>
+      <p class="font-label reveal" style="font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);margin-top:8px">Created with love.</p>
+    </div>
+    <p class="font-label" style="position:absolute;bottom:16px;left:24px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.4);z-index:3">24 / 24</p>
+  </div>
+
+</div>
+<script src="story.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
