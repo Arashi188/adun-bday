@@ -2,7 +2,7 @@
   'use strict';
 
   var current=0, TOTAL=24, started=false, locked=STORY.enableSecretUnlock;
-  var transitioning=false, musicPlaying=false, audio=null;
+  var transitioning=false, musicPlaying=false, audio=null, audioCtx=null;
 
   // ── Fill placeholders ────────────────────────────
   document.querySelectorAll('[data-name]').forEach(function(e){e.textContent=STORY.recipientName});
@@ -13,11 +13,17 @@
   var scenes=[];
   for(var i=0;i<TOTAL;i++) scenes.push(document.getElementById('s'+i));
 
+  // Assign transition variants to scenes
+  var transitionVariants=['','fade-up','','slide','fade-up','','zoom-in','fade-up','slide','','fade-up','slide','fade-up','','slide','fade-up','slide','','fade-up','slide','zoom-in','fade-up','slide','zoom-in'];
+  scenes.forEach(function(s,i){
+    if(transitionVariants[i]) s.classList.add(transitionVariants[i]);
+  });
+
   // ── Reveal on scene enter ────────────────────────
   function reveal(scene){
     var els=scene.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-right,.reveal-line');
     els.forEach(function(el,i){
-      setTimeout(function(){el.classList.add('vis')},60+i*70);
+      setTimeout(function(){el.classList.add('vis')},80+i*70);
     });
   }
   reveal(scenes[0]);
@@ -26,14 +32,31 @@
   function goTo(n){
     if(transitioning||n===current||n<0||n>=TOTAL)return;
     transitioning=true;
-    scenes[current].classList.remove('active');
+
+    var oldScene=scenes[current];
+    var newScene=scenes[n];
+
+    // Add exiting class to old scene
+    oldScene.classList.add('exiting');
+
     setTimeout(function(){
+      oldScene.classList.remove('active','exiting');
       current=n;
-      scenes[current].classList.add('active');
+
+      // Add entering class to new scene
+      newScene.classList.add('entering');
+      newScene.classList.add('active');
+
       updateUI();
-      setTimeout(function(){reveal(scenes[current])},80);
-      setTimeout(function(){transitioning=false},500);
-    },60);
+
+      // Remove entering, trigger reveal
+      setTimeout(function(){
+        newScene.classList.remove('entering');
+        reveal(newScene);
+      },100);
+
+      setTimeout(function(){transitioning=false},600);
+    },450);
   }
 
   function next(){if(started&&current<TOTAL-1)goTo(current+1)}
@@ -116,7 +139,6 @@
   document.getElementById('love-card').addEventListener('click',function(){this.classList.toggle('flipped')});
   document.getElementById('lc-next').addEventListener('click',function(){
     lcIdx=(lcIdx+1)%LOVE_CARDS.length;updLoveCard();
-    // Update counter
     var counter=document.querySelector('#s13 .font-label');
     if(counter)counter.textContent=String(lcIdx+1).padStart(2,'0')+' / '+String(LOVE_CARDS.length).padStart(2,'0');
   });
@@ -223,9 +245,25 @@
   tL.addEventListener('click',prev);
   tR.addEventListener('click',next);
 
+  // ── Ambient audio (Web Audio API soft tone) ───────
+  function startAmbientTone(){
+    try{
+      audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+      var osc=audioCtx.createOscillator();
+      var gain=audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type='sine';
+      osc.frequency.value=110;
+      gain.gain.value=0.02;
+      osc.start();
+    }catch(e){}
+  }
+
   // ── Music ────────────────────────────────────────
   function startMusic(){
     if(audio)return;
+    startAmbientTone();
     audio=new Audio(STORY.musicFile);
     audio.loop=true;audio.volume=0.3;
     audio.play().then(function(){musicPlaying=true;updMusic()}).catch(function(){});
